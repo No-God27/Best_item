@@ -38,5 +38,3 @@ def predict():
 
         return render_template('index.html',predicted_value =max_yield,best = best_item)
 
-if __name__=="__main__":
-    app.run(debug=True)

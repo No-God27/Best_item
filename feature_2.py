@@ -5,10 +5,10 @@ import pickle
 
 
 #loading models
-RF = pickle.load(open('RF.pkl','rb'))
-preprocessor = pickle.load(open('preprocessor.pkl','rb'))
+RF1 = pickle.load(open('RF1.pkl','rb'))
+preprocessor1 = pickle.load(open('preprocessor1.pkl','rb'))
 item_list = ['Potatoes','Maize','Wheat','Rice, paddy','Soybeans','Sorghum','Sweet potatoes','Cassava','Yams',
-             'Plantains and others' ]
+             'Plantains' ]
 
 
 #flask app
@@ -30,8 +30,8 @@ def predict():
 
         for Item in item_list:
             features = np.array([[Item,average_rain_fall_mm_per_year,pesticides_tonnes,avg_temp]],dtype=object)
-            transformed_features = preprocessor.transform(features)
-            predicted_value = RF.predict(transformed_features).reshape(1,-1)
+            transformed_features = preprocessor1.transform(features)
+            predicted_value = RF1.predict(transformed_features).reshape(1,-1)
             if(predicted_value > max_yield):
                 max_yield = predicted_value
                 best_item = Item
